@@ -1,6 +1,6 @@
 import java.util.Scanner;
-
 import RetailSystemFiles.*;
+
 public class Main {
     static Customer customer = new Customer();
     static Admin admin = new Admin();
@@ -29,7 +29,7 @@ public class Main {
                 case '1' :
                     System.out.println("\nCustomer logging in..\n");
                     System.out.println("Sign in");
-                    CustomerLogIn();
+                    //CustomerLogIn();
                     isUser = true;
                     return option;
                 case '2' :
@@ -80,17 +80,13 @@ public class Main {
         do{
             System.out.println("\n-----CUSTOMER MENU-----");
             System.out.println("What would you like to do today " + customer.getName() + "?");
-            System.out.println("[1] SHOP");
-            System.out.println("[2] View Order History");
+            System.out.println("[S] SHOP");
             System.out.println("[X] exit <--");
             System.out.print("      \noption > (number): ");
             op = scan.next().toUpperCase().charAt(0);
             switch(op){
-                case '1':
-                    shop();
-                    break;
-                case '2':
-                    customer.viewOrderHistory();
+                case 'S':
+                    while(shop() == false);
                     break;
                 case 'X':
                     return;
@@ -103,7 +99,9 @@ public class Main {
         
     }
 
-    static void shop(){
+    static boolean shop(){
+        boolean doneShopping = false;
+        boolean isViewing = false;
         char opt;
         do{
             customer.resetTotal();
@@ -113,6 +111,7 @@ public class Main {
                 System.out.println("\n-----Products you can buy-----");
                 admin.lookAtInventory(); //hahaha
                 System.out.println("[0] CHECKOUT --->");
+                System.out.println("[C] View Cart");
                 System.out.println("[X] Exit <---");
                 String x;
                 int op;
@@ -127,13 +126,20 @@ public class Main {
                     if( x.equalsIgnoreCase("0")){
                         customer.checkOut();
                         isDone = true;
+                        doneShopping = true;
                         op = 0;
                         break;
                     }
                     
-                    if( x.equalsIgnoreCase("X")){ // for checking out
+                    if( x.equalsIgnoreCase("X")){ // for check out
                         customer.clearReceipt();
-                        return;
+                        return doneShopping;
+                    }
+                    
+                    if( x.equalsIgnoreCase("C")){
+                        op = 0;
+                        isViewing = true;
+                        break;
                     }
 
                     op = Integer.parseInt(x);
@@ -144,29 +150,39 @@ public class Main {
                 if(isDone == true ){ 
                     break; 
                 }
-
-                Product p = admin.getProduct(op);
-
-
-                if(p.getQuantity() != 0){
-                    //quantity choosing
-                    do{
-                        System.out.print("      input quantity: ");
-                        qty = scan.nextInt();
-                        if(qty > p.getQuantity()){
-                            System.out.println("input exceeds our stock");
-                        }
-                    }
-                    while(qty < 1 || qty > p.getQuantity());
+                
+                Product p;
+                
+                if(isViewing == true){
+                    customer.viewOrderHistory();   
                 }
                 else{
-                    System.out.println("This product is no longer in stock");
+                   p = admin.getProduct(op);
+
+
+                   if(p.getQuantity() != 0){
+                       //quantity choosing
+                       do{
+                           System.out.print("      input quantity: ");
+                           qty = scan.nextInt();
+                           if(qty > p.getQuantity()){
+                               System.out.println("input exceeds our stock");
+                           }
+                       }
+                       while(qty < 1 || qty > p.getQuantity());
+                   }
+                   else{
+                       System.out.println("This product is no longer in stock");
+                   }
+                   if(p != null && p.getQuantity() > 0){
+                        customer.placeOrder(p, qty);
+                        admin.deductStock(op, qty);
+                   }
                 }
+
+                
     
-                if(p != null && p.getQuantity() > 0){
-                    customer.placeOrder(p, qty);
-                    admin.deductStock(op, qty);
-                }
+
             }
             while(isDone == false);
             System.out.print("Do You want to shop again? (Y/N) ");
@@ -174,6 +190,7 @@ public class Main {
 
         }
         while(opt == 'Y');
+        return doneShopping;
     }
 
 
