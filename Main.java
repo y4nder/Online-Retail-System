@@ -32,7 +32,7 @@ public class Main {
             isUser = false;
             System.out.println("\n----- USER LOGIN -----");
             System.out.println("[1] Customer");
-            System.out.println("[2] Admin (UI in development)");
+            System.out.println("[2] Admin");
             System.out.println("[X] EXIT <--");
             System.out.print("    \noption > (number): ");
             option = scan.next().toUpperCase().charAt(0);
@@ -137,9 +137,9 @@ public class Main {
             //choosing products
             do{
                 isViewing = false;
-                System.out.println("\n-----Products you can buy-----");
+                System.out.println("\n      -----Products you can buy-----");
                 validInput = true;
-                admin.lookAtInventory(); //hahaha
+                admin.lookAtInventoryForCustomer(); //hahaha
                 do{ // loop for choosing product menu
                     System.out.println("\n    Choose product to buy");
                     System.out.println("    [0] CHECKOUT --->");
@@ -224,7 +224,8 @@ public class Main {
             System.out.println("[1] Add Product");
             System.out.println("[2] Remove Product");
             System.out.println("[3] Manage Inventory");
-            System.out.println("[W] Sign Out");
+            System.out.println("[W] Sign Out\n");
+            System.out.print("option > (number): ");
             x = scan.next().toUpperCase().charAt(0);
         
             switch(x){
@@ -232,11 +233,10 @@ public class Main {
                     addProductMenu();
                     break;
                 case '2':
-                    removeProductMenu();
+                    removeProductMenu(22);
                     break;
                 case '3':
-                    System.out.println("\n-----MANAGING INVENTORY-----");
-                    admin.lookAtInventory();
+                    editProductMenu(23);
                     break;
                 case 'W':
                     signedOut = true;
@@ -247,14 +247,62 @@ public class Main {
         while(signedOut == false);
         return x;
     }
-    
     static void addProductMenu(){
         Product p = admin.createProduct();
         if(p == null){
             return;
         }
-        
         System.out.println("\n-----CREATING NEW PRODUCT");
+        editProduct(p);
+    }
+
+    static void editProductMenu(int x){
+        int op = chooseProductMenu(x);
+        if(op > 0){
+            modifyProduct(op);
+        }
+        else{
+            if(op == -1) {
+                System.out.println("Failed to remove product");
+            }
+        }
+    }
+
+    static void modifyProduct(int index){
+        boolean doneChoosing;
+        String name = admin.getProduct(index).getName();
+        char x = manageMenu(name);
+        doneChoosing = true;
+        do{
+            switch(x){
+                case '1':              
+                    System.out.print("Enter New Product ID: ");
+                    admin.editProductId(scan.nextInt(), index);
+                    break;
+                case '2':
+                    System.out.print("Enter new Product Name: ");
+                    admin.editProductName(scan.next(), index);
+                    break;
+                case '3':
+                    System.out.print("Enter new Price: ");
+                    admin.editProductPrice(scan.nextDouble(), index);
+                    break;
+                case '4':
+                    System.out.print("Enter new product Quantity");
+                    admin.editProductQuantity(scan.nextInt(), index);
+                    break;
+                case 'X':
+                    return;
+                default:
+                    doneChoosing = false;
+            }
+        }
+        while(doneChoosing == false);
+
+
+    }
+    
+    static void editProduct(Product p){
         System.out.print("Enter Product ID: ");
         p.setProductId(scan.nextInt());
         
@@ -272,25 +320,39 @@ public class Main {
         System.out.println("\n " + p.getName().toUpperCase() + " has been added to the inventory\n");
     }
 
-    static void removeProductMenu(){
+    static void removeProductMenu(int x){
+        int op = chooseProductMenu(x);
+        if(op > 0){
+            admin.removeProduct(op);
+        }
+        else{
+            if(op == -1) {
+                System.out.println("Failed to remove product");
+            }
+        }
+    }
+
+    static int chooseProductMenu(int x){
         char o;
         int op;
         boolean doneChoosing;
-        boolean doneRemoving;
         do{
             doneChoosing = false;
-            doneRemoving = false;
+            // removeProductDialog();
+            switch(x){
+                case 22:
+                    removeProductDialog();
+                    break;
+                case 23:
+                    managingInventoryDialog();
+                    break;
+            }
             op = -1;
-            System.out.println("\n-----REMOVE A PRODUCT-----\n");
-            admin.lookAtInventory();
-            System.out.println("\n    Choose product to remove");
-            System.out.println("    [X] Exit <---");
-            System.out.print("      option > (number): ");
             o = scan.next().toUpperCase().charAt(0);
             switch(o){
                 case 'X':
                     doneChoosing = true;
-                    doneRemoving = true;
+                    op = -2;
                     break;
                 default:
                     try{ //check if user option can be an integer
@@ -311,15 +373,51 @@ public class Main {
         }
         while(doneChoosing == false);
 
-        if(doneRemoving == true) return;
+        return op;
+    }
 
-        if(op == -1) {
-            System.out.println("Failed to remove product");
+    static void removeProductDialog(){
+        System.out.println("\n-----REMOVE A PRODUCT-----\n");
+        admin.lookAtInventoryForAdmin();
+        System.out.println("\n    Choose product to remove");
+        System.out.println("    [X] Exit <---");
+        System.out.print("      option > (number): ");
+    }
+
+    static void managingInventoryDialog(){
+        System.out.println("\n-----MANAGING INVENTORY-----");
+        admin.lookAtInventoryForAdmin();
+        System.out.println("\n    Choose product to manage");
+        System.out.println("    [X] Exit <---");
+        System.out.print("      option > (number): ");
+    }
+
+    static char manageMenu(String name){
+        char op;
+        boolean doneChoosing;
+        do{
+            doneChoosing = false;
+            System.out.println("\n-----CHOOSE WHAT TO EDIT FOR " + name.toUpperCase() + "----- ");
+            System.out.println("[1] Product ID");
+            System.out.println("[2] Product NAME");
+            System.out.println("[3] Product PRICE");
+            System.out.println("[4] Product QUANITY");
+            System.out.println("[X] EXIT <--");
+            System.out.print("      option > (number): ");
+            op = scan.next().toUpperCase().charAt(0);
+            switch(op){
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                    doneChoosing = true;
+                    break;
+                default:
+                    System.out.println("    Invalid input");
+            }
         }
-        else admin.removeProduct(op);
-        System.out.println(admin.getInventoryCount());
-        //get function for removing the product
-
+        while(doneChoosing == false);
+        return op;
     }
 }
 
