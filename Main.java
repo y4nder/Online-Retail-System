@@ -6,13 +6,23 @@ public class Main {
     static Admin admin = new Admin();
     static Scanner scan = new Scanner(System.in);
     public static void main(String[] args){
-        char op = logIn();
-        switch(op){
-            case '1':
-                customerMenu();            
-            case '2':
-                adminMenu();
+        char op, x = 'X';
+        do{
+            op = logIn();
+            switch(op){
+                case '1':
+                    x = customerMenu(); 
+                    System.out.println(x);   
+                    break;
+                case '2':
+                    break;
+                case 'X':
+                    System.out.println("Goodbye!");
+                    x = op;
+                    break;
+            }
         }
+        while(x == 'W');
     }
 
     static char logIn(){
@@ -20,22 +30,24 @@ public class Main {
         boolean isUser;
         do{
             isUser = false;
-            System.out.println("----- USER LOGIN -----");
+            System.out.println("\n----- USER LOGIN -----");
             System.out.println("[1] Customer");
             System.out.println("[2] Admin (UI in development)");
+            System.out.println("[X] EXIT <--");
             System.out.print("    \noption > (number): ");
-            option = scan.nextLine().charAt(0);
+            option = scan.next().toUpperCase().charAt(0);
             switch(option){
                 case '1' :
-                    System.out.println("\nCustomer logging in..\n");
+                    System.out.println("\n-----Customer logging in..-----\n");
                     System.out.println("Sign in");
-                    //CustomerLogIn();
-                    isUser = true;
+                    // CustomerLogIn();
                     return option;
                 case '2' :
-                    System.out.println("\nAdmin logging in..\n");
+                    System.out.println("\n-----Admin logging in..-----\n");
                     AdminLogIn();
-                    isUser = true;
+                    return option;
+                case 'X' :
+                    System.out.println("\nExiting program...");
                     return option;
                 default :
                     System.out.println("Invalid Input");
@@ -74,128 +86,125 @@ public class Main {
         customer.setEmail(scan.next());
     }
 
-    static void customerMenu(){
+    static char customerMenu(){
         char op;
         boolean x = false;
         do{
             System.out.println("\n-----CUSTOMER MENU-----");
             System.out.println("What would you like to do today " + customer.getName() + "?");
             System.out.println("[S] SHOP");
-            System.out.println("[X] exit <--");
+            System.out.println("[W] Sign Out");
             System.out.print("      \noption > (number): ");
             op = scan.next().toUpperCase().charAt(0);
             switch(op){
                 case 'S':
                     while(shop() == false);
                     break;
-                case 'X':
-                    return;
+                case 'W':
+                    System.out.println("Signing you out...");
+                    x = true;
+                    break;
                 default:
                     System.out.println("    Invalid input");
-                    x = true;
             }
         }
         while(x == false);
-        
+        return op;
     }
 
     static boolean shop(){
         boolean doneShopping = false;
         boolean isViewing = false;
+        boolean isDone = false;
         char opt;
+        
+        customer.resetTotal();
+        customer.clearReceipt();
         do{
-            customer.resetTotal();
-            customer.clearReceipt();
-            boolean isDone = false;
+            System.out.println("\n-----Products you can buy-----");
+            int op = 0;
+            int qty = 0;
+            char o;
+            
+            //choosing products
             do{
-                System.out.println("\n-----Products you can buy-----");
+                boolean validInput = true;
                 admin.lookAtInventory(); //hahaha
-                System.out.println("[0] CHECKOUT --->");
-                System.out.println("[C] View Cart");
                 System.out.println("[X] Exit <---");
-                String x;
-                int op;
-                int qty = 0;
-                
-                //choosing products
-                do{
+                do{ // loop for choosing product menu
                     System.out.println("\n    Choose product to buy");
+                    System.out.println("    [C] View Cart");
+                    System.out.println("    [0] CHECKOUT --->");
                     System.out.print("      option > (number): ");
-                    x = scan.next();
+                    o = scan.next().toUpperCase().charAt(0);
     
-                    if( x.equalsIgnoreCase("0")){
-                        customer.checkOut();
-                        isDone = true;
-                        doneShopping = true;
-                        op = 0;
-                        break;
-                    }
-                    
-                    if( x.equalsIgnoreCase("X")){ // for check out
-                        customer.clearReceipt();
-                        return doneShopping;
-                    }
-                    
-                    if( x.equalsIgnoreCase("C")){
-                        op = 0;
-                        isViewing = true;
-                        break;
-                    }
+                    switch(o){
+                        case '0':
+                            customer.checkOut();
+                            isDone = true;
+                            doneShopping = true;
+                            break;
+                        case 'X':
+                            customer.clearReceipt();
+                            doneShopping = true;
+                            return doneShopping;
+                        case 'C':
+                            isViewing = true;
+                            break;
+                        default:
+                            try{
+                                op = Integer.parseInt(String.valueOf(o));
+                                break;
+                            } catch (NumberFormatException nfe){
+                                validInput = false;
+                                System.out.println("invalid input");
+                            }
 
-                    op = Integer.parseInt(x);
-    
+                            if(op < 0 || op > admin.getInventoryCount() ){
+                                validInput = false;
+                                System.out.println("Invalid Input");
+                            }
+                    }
+                    
                 }
-                while( op < 0 || op > admin.getInventoryCount());
-                
-                if(isDone == true ){ 
-                    break; 
-                }
-                
+                while(validInput == false ); //checks if input is within range
+
+                if(isDone == true) break;
+
                 Product p;
-                
-                if(isViewing == true){
-                    customer.viewOrderHistory();   
+
+                if(isViewing == true){  //if customer wants to view cart
+                    customer.viewOrderHistory();
                 }
-                else{
-                   p = admin.getProduct(op);
-
-
-                   if(p.getQuantity() != 0){
-                       //quantity choosing
-                       do{
-                           System.out.print("      input quantity: ");
-                           qty = scan.nextInt();
-                           if(qty > p.getQuantity()){
-                               System.out.println("input exceeds our stock");
-                           }
-                       }
-                       while(qty < 1 || qty > p.getQuantity());
-                   }
-                   else{
-                       System.out.println("This product is no longer in stock");
-                   }
-                   if(p != null && p.getQuantity() > 0){
-                        customer.placeOrder(p, qty);
-                        admin.deductStock(op, qty);
-                   }
+                else{   
+                    p = admin.getProduct(op);
+                    if(p.getQuantity() != 0){
+                        //quantity choosing
+                        do{
+                            System.out.print("      input quantity: ");
+                            qty = scan.nextInt();
+                            if(qty > p.getQuantity()){
+                                System.out.println("input exceeds our stock");
+                            }
+                        }
+                        while(qty < 1 || qty > p.getQuantity());
+                    }
+                    else{
+                        System.out.println("This product is no longer in stock");
+                    }
+                    if(p != null && p.getQuantity() > 0){
+                            customer.placeOrder(p, qty);
+                            admin.deductStock(op, qty);
+                    }
                 }
-
-                
-    
-
             }
             while(isDone == false);
             System.out.print("Do You want to shop again? (Y/N) ");
             opt = scan.next().toUpperCase().charAt(0);
-
+        
         }
         while(opt == 'Y');
         return doneShopping;
     }
-
-
-
-    static void adminMenu(){
-
-    }
 }
+

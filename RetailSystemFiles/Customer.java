@@ -54,13 +54,14 @@ public class Customer extends User{
    //methods
    public boolean placeOrder(Product p, int q){
       order.addProductToOrder(p, q);
+      System.out.println("\n" + p.getName().toUpperCase() + " " + q + "x was added to your cart");
       addToHistory(p.getName() + "      x" + q + "\n");
       return true;
    }
 
    public void viewOrderHistory(){
       if(hasPurchased == false){
-         System.out.println("\nNO PURCHASE HISTORY\n");
+         System.out.println("\ncart is empty\n");
          return;
       }
       System.out.println("-----Order History-----");

@@ -58,7 +58,7 @@ public class Inventory {
 
     public void showInventory(){
         for(int i = 0; i < counter; i++){
-            System.out.println("[" + (i + 1) + "]" + list[i].getName() + "      stock: " + list[i].getQuantity());
+            System.out.println("[" + (i + 1) + "]" + "  $" + list[i].getPrice() + "    " + list[i].getName().toUpperCase() + "          stock: " + list[i].getQuantity());
         }
     }
 
