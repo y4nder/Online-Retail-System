@@ -120,6 +120,7 @@ public class Main {
         boolean doneShopping;
         boolean doneChoosing;
         boolean isViewing;
+        boolean validInput;
         char opt;
         int op;
         int qty;
@@ -137,7 +138,7 @@ public class Main {
             do{
                 isViewing = false;
                 System.out.println("\n-----Products you can buy-----");
-                boolean validInput = true;
+                validInput = true;
                 admin.lookAtInventory(); //hahaha
                 do{ // loop for choosing product menu
                     System.out.println("\n    Choose product to buy");
@@ -163,13 +164,11 @@ public class Main {
                         default:
                             try{
                                 op = Integer.parseInt(String.valueOf(o));
-                                break;
                             } catch (NumberFormatException nfe){
                                 validInput = false;
                                 System.out.println("invalid input");
                             }
-
-                            if(op < 0 || op > admin.getInventoryCount() ){
+                            if(op < 1 || op > admin.getInventoryCount() ){
                                 validInput = false;
                                 System.out.println("Invalid Input");
                             }
@@ -217,9 +216,11 @@ public class Main {
     }
     
     static char adminMenu(){
-        boolean signedOut = false;
+        boolean signedOut;
         char x;
         do{
+            signedOut = false;
+            System.out.println("\n-----ADMIN MENU-----");
             System.out.println("[1] Add Product");
             System.out.println("[2] Remove Product");
             System.out.println("[3] Manage Inventory");
@@ -231,9 +232,10 @@ public class Main {
                     addProductMenu();
                     break;
                 case '2':
+                    removeProductMenu();
                     break;
                 case '3':
-                    System.out.println("\n");
+                    System.out.println("\n-----MANAGING INVENTORY-----");
                     admin.lookAtInventory();
                     break;
                 case 'W':
@@ -268,6 +270,56 @@ public class Main {
         admin.addProduct(p);
         
         System.out.println("\n " + p.getName().toUpperCase() + " has been added to the inventory\n");
+    }
+
+    static void removeProductMenu(){
+        char o;
+        int op;
+        boolean doneChoosing;
+        boolean doneRemoving;
+        do{
+            doneChoosing = false;
+            doneRemoving = false;
+            op = -1;
+            System.out.println("\n-----REMOVE A PRODUCT-----\n");
+            admin.lookAtInventory();
+            System.out.println("\n    Choose product to remove");
+            System.out.println("    [X] Exit <---");
+            System.out.print("      option > (number): ");
+            o = scan.next().toUpperCase().charAt(0);
+            switch(o){
+                case 'X':
+                    doneChoosing = true;
+                    doneRemoving = true;
+                    break;
+                default:
+                    try{ //check if user option can be an integer
+                        op = Integer.parseInt(String.valueOf(o));
+                    } catch (NumberFormatException nfe){
+                        doneChoosing = false;
+                        System.out.println("    invalid input");
+                        break;
+                    }
+                    
+                    //check if user option is within inventory range
+                    if(op < 1 || op > admin.getInventoryCount() ){
+                        doneChoosing = false;
+                        System.out.println("    Invalid Input");
+                    }
+                    else doneChoosing = true;
+            }
+        }
+        while(doneChoosing == false);
+
+        if(doneRemoving == true) return;
+
+        if(op == -1) {
+            System.out.println("Failed to remove product");
+        }
+        else admin.removeProduct(op);
+        System.out.println(admin.getInventoryCount());
+        //get function for removing the product
+
     }
 }
 
