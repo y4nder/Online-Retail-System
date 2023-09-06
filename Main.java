@@ -17,7 +17,6 @@ public class Main {
                      x = adminMenu();
                     break;
                 case 'X':
-                    System.out.println("Goodbye!");
                     x = op;
                     break;
             }
@@ -32,7 +31,7 @@ public class Main {
             isUser = false;
             System.out.println("\n----- USER LOGIN -----");
             System.out.println("[1] Customer");
-            System.out.println("[2] Admin (UI in development)");
+            System.out.println("[2] Admin");
             System.out.println("[X] EXIT <--");
             System.out.print("    \noption > (number): ");
             option = scan.next().toUpperCase().charAt(0);
@@ -40,11 +39,13 @@ public class Main {
                 case '1' :
                     System.out.println("\n-----Customer logging in..-----\n");
                     System.out.println("Sign in");
-                    //CustomerLogIn();
+                    CustomerLogIn();
+                    customer.LogIn();
                     return option;
                 case '2' :
                     System.out.println("\n-----Admin logging in..-----\n");
-                    //AdminLogIn();
+                    AdminLogIn();
+                    admin.LogIn();
                     return option;
                 case 'X' :
                     System.out.println("\nExiting program...");
@@ -94,7 +95,7 @@ public class Main {
             System.out.println("What would you like to do today " + customer.getName() + "?");
             System.out.println("[S] SHOP");
             System.out.println("[H] Order History");
-            System.out.println("[W] Sign Out");
+            System.out.println("[W] Log Out");
             System.out.print("      \noption > (number): ");
             op = scan.next().toUpperCase().charAt(0);
             switch(op){
@@ -105,7 +106,7 @@ public class Main {
                     customer.viewOrderHistory();
                     break;
                 case 'W':
-                    System.out.println("Signing you out...");
+                    customer.LogOut();
                     x = true;
                     break;
                 default:
@@ -223,7 +224,7 @@ public class Main {
             System.out.println("[1] Add Product");
             System.out.println("[2] Remove Product");
             System.out.println("[3] Manage Inventory");
-            System.out.println("[W] Sign Out");
+            System.out.println("[W] Log Out");
             x = scan.next().toUpperCase().charAt(0);
         
             switch(x){
@@ -238,7 +239,7 @@ public class Main {
                     break;
                 case 'W':
                     signedOut = true;
-                    System.out.println("Signing you out...");
+                    admin.LogOut();
                     break;
             }            
         }
