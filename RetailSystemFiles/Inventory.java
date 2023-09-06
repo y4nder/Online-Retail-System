@@ -74,4 +74,10 @@ public class Inventory {
     public Product findProduct(int index){
         return list[index - 1];
     }
+    
+    public Product createNewProduct(){
+         if(counter < maxQuantity ){
+            System.out.println("Max inventory reached");
+         }
+    }
 }
