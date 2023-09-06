@@ -4,6 +4,7 @@ public class User{
    protected String userName;
    protected String email;
    
+   //constructors
    public User(int usId, String usName, String em){
       this.userId = usId;
       this.userName = usName;
@@ -16,6 +17,7 @@ public class User{
       this.email = "";
    }
    
+   //setters
    public void setUserId(int id){
       userId = id;
    }
@@ -28,19 +30,27 @@ public class User{
       this.email = email;
    }
 
+   //getters
    public String getName(){
       return userName;
    }
-   
+
+   public String getUserName(){
+      return userName;
+   }
+
+   public String getEmail(){
+      return email;
+   }
+
+   //methods
    public void LogIn(){
-      System.out.println("User logged in");
+      System.out.println(getName() + "is logged in");
    }
    
    public void LogOut(){
-      System.out.println("User logged out");
+      System.out.println(getName() + "is logged out");
    }
-
-
 
    public String toString(){
       return "user ID: " + userId + "\nusername: " + userName + " \nemail: " + email;
