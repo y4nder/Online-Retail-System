@@ -33,8 +33,8 @@ public class Admin extends User{
    }
 
    //methods
-   public boolean addProduct(int prodId, String name, double price, int q){
-      inventory.addProduct(new Product(prodId, name, price, q));
+   public boolean addProduct(Product p){
+      inventory.add(p);
       return true;
    }
 
@@ -65,6 +65,10 @@ public class Admin extends User{
 
    public Product getProduct(int index){
       return inventory.findProduct(index);
+   }
+   
+   public Product createProduct(){
+      return inventory.createNewProduct();
    }
    
    public String toString(){
