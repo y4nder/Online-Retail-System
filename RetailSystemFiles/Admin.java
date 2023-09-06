@@ -67,6 +67,10 @@ public class Admin extends User{
       return inventory.findProduct(index);
    }
    
+   public Product createProduct(){
+      return inventory.createNewProduct();
+   }
+   
    public String toString(){
       return "admin id: " + adminId + 
             "\n name: " + super.userName + 
