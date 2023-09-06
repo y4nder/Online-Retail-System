@@ -68,6 +68,6 @@ public class Product {
    }
 
    public void showInfoForAdmin(){
-      System.out.printf("%15s %15s %15s %15s\n",getProductId() , "$" + getName(), getPrice(), getQuantity());
+      System.out.printf("%15s %15s %15s %15s\n",getProductId() , getName(), "$" + getPrice(), getQuantity());
    }
 }

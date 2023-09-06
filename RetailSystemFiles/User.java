@@ -45,11 +45,11 @@ public class User{
 
    //methods
    public void LogIn(){
-      System.out.println(getName() + "is logged in");
+      System.out.println("\n" + getName() + " is logged in");
    }
    
    public void LogOut(){
-      System.out.println(getName() + "is logged out");
+      System.out.println("\n" + getName() + " is logged out");
    }
 
    public String toString(){
