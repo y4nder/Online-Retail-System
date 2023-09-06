@@ -34,7 +34,7 @@ public class Order {
         totalAmount = 0;
     }
 
-    public void clearReceipt(){
+    public void clearR(){
         receipt = "";
     }
 
