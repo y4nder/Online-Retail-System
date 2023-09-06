@@ -72,7 +72,7 @@ public class Order {
 
     public boolean removeProductToOrder(int index){
         if(counter == 0){
-            System.out.println("Your cart is empty");
+            System.out.println("YOUR CART IS EMPTY :<");
             return false;
         }
 

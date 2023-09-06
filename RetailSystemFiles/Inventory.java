@@ -16,6 +16,23 @@ public class Inventory {
         maxQuantity = 99;
     }
 
+    //setters
+    public void editId(int id, int index){
+        list[index - 1].setProductId(id);
+    }
+
+    public void editName(String name, int index){
+        list[index - 1].setProductName(name);
+    }
+
+    public void editPrice(double price, int index){
+        list[index - 1].updatePrice(price);
+    }
+
+    public void editQuantity(int qty, int index){
+        list[index - 1].updateStock(qty);
+    }
+
     public int getCounter(){
         return counter;
     }
@@ -54,11 +71,29 @@ public class Inventory {
         return true;
     }
 
-    public void showInventory(){
+    public void showInventoryForAdmin(){
+        System.out.printf("   %15s %15s %15s %15s\n", "----------", "----------", "----------", "----------");
+        System.out.printf("   %15s %15s %15s %15s\n", "ID", "NAME", "PRICE", "QUANTITY");
+        System.out.printf("   %15s %15s %15s %15s\n", "----------", "----------", "----------", "----------");
+        System.out.println();
         for(int i = 0; i < counter; i++){
-            System.out.println("[" + (i + 1) + "]" + "  $" + list[i].getPrice() + "    " + list[i].getName().toUpperCase() + "          stock: " + list[i].getQuantity());
+            System.out.print("[" + (i + 1) + "]");
+            list[i].showInfoForAdmin();
         }
     }
+
+    public void showInventoryForCustomer(){
+        System.out.printf("   %15s %15s %15s\n", "----", "-----", "------");
+        System.out.printf("   %15s %15s %15s\n","NAME", "PRICE", "QUANTITY");
+        System.out.printf("   %15s %15s %15s\n", "----", "-----", "------");
+        System.out.println();
+        for(int i = 0; i < counter; i++){
+            System.out.print("[" + (i + 1) + "]");
+            list[i].showInfoForCustomer();
+        }
+    }
+
+    
 
     public boolean refillInventory(int index){
         if(list[index - 1].getQuantity() >= maxQuantity){

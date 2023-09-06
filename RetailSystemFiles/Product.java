@@ -62,4 +62,12 @@ public class Product {
    public String toString(){
       return "product id: " + productId + "\nname: " + name + "\nprice: " + price + "\nquanity: " + quantity;
    }
+
+   public void showInfoForCustomer(){
+      System.out.printf("%15s %15s %15s\n",getName(), "$" + getPrice(), getQuantity());
+   }
+
+   public void showInfoForAdmin(){
+      System.out.printf("%15s %15s %15s %15s\n",getProductId() , "$" + getName(), getPrice(), getQuantity());
+   }
 }
