@@ -12,9 +12,9 @@ public class Main {
             switch(op){
                 case '1':
                     x = customerMenu(); 
-                    System.out.println(x);   
                     break;
                 case '2':
+                     x = adminMenu();
                     break;
                 case 'X':
                     System.out.println("Goodbye!");
@@ -40,11 +40,11 @@ public class Main {
                 case '1' :
                     System.out.println("\n-----Customer logging in..-----\n");
                     System.out.println("Sign in");
-                    // CustomerLogIn();
+                    //CustomerLogIn();
                     return option;
                 case '2' :
                     System.out.println("\n-----Admin logging in..-----\n");
-                    AdminLogIn();
+                    //AdminLogIn();
                     return option;
                 case 'X' :
                     System.out.println("\nExiting program...");
@@ -205,6 +205,39 @@ public class Main {
         }
         while(opt == 'Y');
         return doneShopping;
+    }
+    
+    static char adminMenu(){
+         boolean signedOut = false;
+         char x;
+         do{
+            System.out.println("[1] Add Product");
+            System.out.println("[2] Remove Product");
+            System.out.println("[3] Manage Inventory");
+            System.out.println("[W] Sign Out");
+            x = scan.next().toUpperCase().charAt(0);
+            
+            switch(x){
+               case '1':
+                  addProductMenu();
+                  break;
+               case '2':
+                  break;
+               case '3':
+                  break;
+               case 'W':
+                  signedOut = true;
+                  System.out.println("Signing you out...");
+                  break;
+            }            
+         }
+         while(signedOut == false);
+         return x;
+    }
+    
+    static void addProductMenu(){
+         
+         System.out.println("")
     }
 }
 
