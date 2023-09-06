@@ -6,7 +6,6 @@ public class Customer extends User{
    private Order order;
    private String orderHistory;
    private boolean hasPurchased;
-   private boolean cancelled;
    private boolean hasOrdered;
    
    public Customer(int usId, String usName, String em, int cusId, String addr ){
@@ -16,7 +15,6 @@ public class Customer extends User{
       order = new Order();
       orderHistory = "";
       hasPurchased = false;
-      cancelled = false;
       hasOrdered = false;
    }
 
@@ -26,7 +24,6 @@ public class Customer extends User{
       order = new Order();
       orderHistory = "";
       hasPurchased = false;
-      cancelled = false;
       hasOrdered = false;
    }
    
@@ -44,7 +41,6 @@ public class Customer extends User{
    }
 
    public void clearReceipt(){
-      cancelled = true;
       order.clearR();
    }
 
@@ -79,7 +75,7 @@ public class Customer extends User{
    
    public void viewCart(){
       if(hasOrdered == false){
-         System.out.println("\ncart is empty\n");
+         System.out.println("\nYOUR CART IS EMPTY :<\n");
          return;
       }
       System.out.println(order.getReceipt());

@@ -27,6 +27,25 @@ public class Admin extends User{
       department = _department; 
    }
 
+   //setters for inventory
+   public void editProductId(int id, int index){
+      inventory.editId(id, index);
+   }
+
+   public void editProductName(String name, int index){
+      inventory.editName(name, index);
+   }
+
+   public void editProductPrice(double price, int index){
+      inventory.editPrice(price, index);
+   }
+
+   public void editProductQuantity(int qty, int index){
+      inventory.editQuantity(qty, index);
+   }
+
+   
+
    //getter
    public int getInventoryCount(){
       return inventory.getCounter();
@@ -58,9 +77,12 @@ public class Admin extends User{
  
    //additional methods
 
-   public void lookAtInventory(){
-      // System.out.println("-----ITEMS-----");
-      inventory.showInventory();
+   public void lookAtInventoryForAdmin(){
+      inventory.showInventoryForAdmin();
+   }
+
+   public void lookAtInventoryForCustomer(){
+      inventory.showInventoryForCustomer();
    }
 
    public Product getProduct(int index){
