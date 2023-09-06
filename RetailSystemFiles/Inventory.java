@@ -20,11 +20,12 @@ public class Inventory {
         return counter;
     }
     //methods
-    public boolean add(Product p){
+    public boolean addProduct(Product p){
         if(counter >= MAX){
             System.out.println("Maximum limit of Products made");
             return false;
         }
+
         counter++;
         list[counter - 1] = p;
         return true;
@@ -75,10 +76,8 @@ public class Inventory {
     }
     
     public Product createNewProduct(){
-         if(counter >= MAX ){
+         if(counter < maxQuantity ){
             System.out.println("Max inventory reached");
-            return null;
          }
-         return new Product();
     }
 }

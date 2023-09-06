@@ -93,16 +93,12 @@ public class Main {
             System.out.println("\n-----CUSTOMER MENU-----");
             System.out.println("What would you like to do today " + customer.getName() + "?");
             System.out.println("[S] SHOP");
-            System.out.println("[H] Order History");
             System.out.println("[W] Sign Out");
             System.out.print("      \noption > (number): ");
             op = scan.next().toUpperCase().charAt(0);
             switch(op){
                 case 'S':
                     while(shop() == false);
-                    break;
-                case 'H':
-                    customer.viewOrderHistory();
                     break;
                 case 'W':
                     System.out.println("Signing you out...");
@@ -117,44 +113,39 @@ public class Main {
     }
 
     static boolean shop(){
-        boolean doneShopping;
-        boolean doneChoosing;
-        boolean isViewing;
+        boolean doneShopping = false;
+        boolean isViewing = false;
+        boolean isDone = false;
         char opt;
-        int op;
-        int qty;
+        
+        customer.resetTotal();
+        customer.clearReceipt();
         do{
-            customer.resetTotal();
-            customer.resetReceipt();
-            customer.resetOrders();
-            doneShopping = false;
-            doneChoosing = false;
-            opt = 'N';
-            op = 0;
-            qty = 0;
+            System.out.println("\n-----Products you can buy-----");
+            int op = 0;
+            int qty = 0;
             char o;
+            
             //choosing products
             do{
-                isViewing = false;
-                System.out.println("\n-----Products you can buy-----");
                 boolean validInput = true;
                 admin.lookAtInventory(); //hahaha
+                System.out.println("[X] Exit <---");
                 do{ // loop for choosing product menu
                     System.out.println("\n    Choose product to buy");
-                    System.out.println("    [0] CHECKOUT --->");
                     System.out.println("    [C] View Cart");
-                    System.out.println("    [X] Exit <---");
+                    System.out.println("    [0] CHECKOUT --->");
                     System.out.print("      option > (number): ");
                     o = scan.next().toUpperCase().charAt(0);
     
                     switch(o){
                         case '0':
                             customer.checkOut();
-                            doneChoosing = true;
+                            isDone = true;
                             doneShopping = true;
                             break;
                         case 'X':
-                            customer.resetReceipt();
+                            customer.clearReceipt();
                             doneShopping = true;
                             return doneShopping;
                         case 'C':
@@ -178,12 +169,12 @@ public class Main {
                 }
                 while(validInput == false ); //checks if input is within range
 
-                if(doneChoosing == true) break;
+                if(isDone == true) break;
 
                 Product p;
 
                 if(isViewing == true){  //if customer wants to view cart
-                    customer.viewCart();
+                    customer.viewOrderHistory();
                 }
                 else{   
                     p = admin.getProduct(op);
@@ -207,8 +198,8 @@ public class Main {
                     }
                 }
             }
-            while(doneChoosing == false);
-            System.out.print("\nDo You want to shop again? (Y/N) ");
+            while(isDone == false);
+            System.out.print("Do You want to shop again? (Y/N) ");
             opt = scan.next().toUpperCase().charAt(0);
         
         }
@@ -217,57 +208,36 @@ public class Main {
     }
     
     static char adminMenu(){
-        boolean signedOut = false;
-        char x;
-        do{
+         boolean signedOut = false;
+         char x;
+         do{
             System.out.println("[1] Add Product");
             System.out.println("[2] Remove Product");
             System.out.println("[3] Manage Inventory");
             System.out.println("[W] Sign Out");
             x = scan.next().toUpperCase().charAt(0);
-        
+            
             switch(x){
-                case '1':
-                    addProductMenu();
-                    break;
-                case '2':
-                    break;
-                case '3':
-                    System.out.println("\n");
-                    admin.lookAtInventory();
-                    break;
-                case 'W':
-                    signedOut = true;
-                    System.out.println("Signing you out...");
-                    break;
+               case '1':
+                  addProductMenu();
+                  break;
+               case '2':
+                  break;
+               case '3':
+                  break;
+               case 'W':
+                  signedOut = true;
+                  System.out.println("Signing you out...");
+                  break;
             }            
-        }
-        while(signedOut == false);
-        return x;
+         }
+         while(signedOut == false);
+         return x;
     }
     
     static void addProductMenu(){
-        Product p = admin.createProduct();
-        if(p == null){
-            return;
-        }
-        
-        System.out.println("\n-----CREATING NEW PRODUCT");
-        System.out.print("Enter Product ID: ");
-        p.setProductId(scan.nextInt());
-        
-        System.out.print("Enter Product Name: ");
-        p.setProductName(scan.next());
-        
-        System.out.print("Enter Price for " + p.getName() + ": ");
-        p.updatePrice(scan.nextDouble());
-        
-        System.out.print("Enter quantity for " + p.getName() + ": ");
-        p.updateStock(scan.nextInt());
-
-        admin.addProduct(p);
-        
-        System.out.println("\n " + p.getName().toUpperCase() + " has been added to the inventory\n");
+         
+         System.out.println("")
     }
 }
 
