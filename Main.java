@@ -236,8 +236,25 @@ public class Main {
     }
     
     static void addProductMenu(){
-//         this is a new line
-         System.out.println("")
+         Product p = admin.createProduct();
+         if(p == null){
+            return;
+         }
+         
+         System.out.println("\n-----CREATING NEW PRODUCT");
+         System.out.print("Enter Product ID: ");
+         p.setProductId(scan.nextInt());
+         
+         System.out.print("Enter Product Name: ");
+         p.setProductName(scan.next());
+         
+         System.out.print("Enter Price for " + p.getName() + ": ");
+         p.updatePrice(scan.nextDouble());
+         
+         System.out.print("Enter quantity for " + p.getName() + ": ");
+         p.updateStock(scan.nextInt());
+         
+         System.out.println("\n " + p.getName().toUpperCase() + " has been added to the inventory\n");
     }
 }
 
