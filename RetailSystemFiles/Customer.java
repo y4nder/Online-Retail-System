@@ -52,8 +52,13 @@ public class Customer extends User{
       hasOrdered = false;
    }
 
+   //getters
    public void getOrderCount(){
       System.out.println(order.getCountOrder());
+   }
+
+   public boolean getCartStatus(){
+      return hasOrdered;
    }
    
    //methods
@@ -73,12 +78,15 @@ public class Customer extends User{
       System.out.println(orderHistory);
    }
    
-   public void viewCart(){
+   public boolean viewCart(){
       if(hasOrdered == false){
          System.out.println("\nYOUR CART IS EMPTY :<\n");
-         return;
+         return false;
       }
+      System.out.println("\n        ------YOUR CART-----");
       System.out.println(order.getReceipt());
+      System.out.println("       TOTAL: $" + order.getTotal());
+      return true;
    }
 
    public void checkOut(){

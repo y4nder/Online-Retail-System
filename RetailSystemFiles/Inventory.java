@@ -52,8 +52,8 @@ public class Inventory {
             System.out.println("Your Inventory is empty");
             return false;
         }
-
-        System.out.println(list[index-1].getName() + " has been removed from storage");
+        
+        System.out.println(list[index - 1].getName() + " has been removed from storage");
         for(int i = index - 1; i < counter - 1; i++){
             list[i] = list[i + 1];
         }

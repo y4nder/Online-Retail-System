@@ -15,7 +15,7 @@ public class Interface {
                     x = customerMenu(); 
                     break;
                 case '2':
-                     x = adminMenu();
+                    x = adminMenu();
                     break;
                 case 'X':
                     x = op;
@@ -40,12 +40,12 @@ public class Interface {
                 case '1' :
                     System.out.println("\n-----Customer logging in..-----\n");
                     System.out.println("Sign in");
-                    CustomerLogIn();
+                    // CustomerLogIn();
                     customer.LogIn();
                     return option;
                 case '2' :
                     System.out.println("\n-----Admin logging in..-----\n");
-                    AdminLogIn();
+                    // AdminLogIn();
                     admin.LogIn();
                     return option;
                 case 'X' :
@@ -143,10 +143,10 @@ public class Interface {
             //choosing products
             do{
                 isViewing = false;
-                System.out.println("\n      -----Products you can buy-----");
-                validInput = true;
-                admin.lookAtInventoryForCustomer(); //hahaha
                 do{ // loop for choosing product menu
+                    System.out.println("\n      -----Products you can buy-----");
+                    admin.lookAtInventoryForCustomer(); //hahaha
+                    validInput = true;
                     System.out.println("\n    Choose product to buy");
                     System.out.println("    [0] CHECKOUT --->");
                     System.out.println("    [C] View Cart");
@@ -156,10 +156,17 @@ public class Interface {
     
                     switch(o){
                         case '0':
-                            customer.checkOut();
-                            doneChoosing = true;
-                            doneShopping = true;
-                            break;
+                            boolean x = checkOutMenu();
+                            if(x == true){
+                                customer.checkOut();
+                                doneChoosing = true;
+                                doneShopping = true;
+                                break;
+                            }
+                            else{ 
+                                validInput = false;
+                                break;
+                            }
                         case 'X':
                             customer.resetReceipt();
                             doneShopping = true;
@@ -215,7 +222,6 @@ public class Interface {
             while(doneChoosing == false);
             System.out.print("\nDo You want to shop again? (Y/N) ");
             opt = scan.next().toUpperCase().charAt(0);
-        
         }
         while(opt == 'Y');
         return doneShopping;
@@ -298,14 +304,12 @@ public class Interface {
                     admin.editProductQuantity(scan.nextInt(), index);
                     break;
                 case 'X':
-                    return;
+                    break;
                 default:
                     doneChoosing = false;
             }
         }
         while(doneChoosing == false);
-
-
     }
     
     public void editProduct(Product p){
@@ -416,6 +420,7 @@ public class Interface {
                 case '2':
                 case '3':
                 case '4':
+                case 'X':
                     doneChoosing = true;
                     break;
                 default:
@@ -424,5 +429,32 @@ public class Interface {
         }
         while(doneChoosing == false);
         return op;
+    }
+
+    public boolean checkOutMenu(){
+        char op ;
+        boolean isValid;
+        do{
+            isValid = true;
+            // customer.viewCart();
+            if(customer.viewCart() == false){
+                return false;
+            }
+
+            System.out.print("\n        Confirm Check Out (y/n): ");
+            op = scan.next().toUpperCase().charAt(0);
+            if(op == 'Y'){
+                return true;
+            }
+            else if( op == 'N'){
+                return false;
+            }
+            else{
+                System.out.println("        Invalid input");
+                isValid = false;
+            }
+        }
+        while(isValid == false);
+        return true;
     }
 }
