@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import RetailSystemFiles.*;
 
@@ -6,6 +5,7 @@ public class Interface {
     static Customer customer = new Customer();
     static Admin admin = new Admin();
     static Scanner scan = new Scanner(System.in);
+    
     public void begin(){
         char op, x = 'X';
         do{
@@ -119,6 +119,10 @@ public class Interface {
     }
 
     public boolean shop(){
+        if(admin.getInventoryCount() == 0){
+            System.out.println("The shop is currently closed");
+            return true;
+        }
         boolean doneShopping;
         boolean doneChoosing;
         boolean isViewing;
@@ -227,6 +231,7 @@ public class Interface {
             System.out.println("[2] Remove Product");
             System.out.println("[3] Manage Inventory");
             System.out.println("[W] Log Out");
+            System.out.print("      option > (number): ");
             x = scan.next().toUpperCase().charAt(0);
         
             switch(x){

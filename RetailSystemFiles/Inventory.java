@@ -53,11 +53,11 @@ public class Inventory {
             return false;
         }
 
+        System.out.println(list[index-1].getName() + " has been removed from storage");
         for(int i = index - 1; i < counter - 1; i++){
             list[i] = list[i + 1];
         }
         counter--;
-        System.out.println(list[index-1].getName() + " has been removed from storage");
         return true;
     }
 
