@@ -1,5 +1,10 @@
 package RetailSystemFiles;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Date;
 public class Order {
+    private DateFormat date;
+    private Date obj = new Date();
     private int orderId;
     private int customerId;
     private int MAX;
@@ -10,12 +15,14 @@ public class Order {
     private String orderDate;
 
     public Order(){
+        date = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        obj = new Date();
         orderId = 0;
         customerId = 0;
         MAX = 20;
         productList = new Product[MAX];
         totalAmount = 0;
-        orderDate = "00/00/00";
+        orderDate = date.format(obj);
         receipt = "";
         counter = 0;
     }
@@ -29,6 +36,15 @@ public class Order {
         return receipt;
     }
 
+    public String getDate(){
+        setDate();
+        return orderDate;
+    }
+
+    public double getTotal(){
+        return totalAmount;
+    }
+
     //setters
     public void resetTotal(){
         totalAmount = 0;
@@ -36,6 +52,10 @@ public class Order {
 
     public void clearR(){
         receipt = "";
+    }
+
+    public void setDate(){
+        orderDate = date.format(obj);
     }
 
 
@@ -67,12 +87,12 @@ public class Order {
     }
 
     private void addToReceipt(Product p, int qty){
-        receipt += p.getName() + "      x" + qty + "\n"; 
+        receipt += "         $" + p.getPrice() + "      " + p.getName() + "      x" + qty + "\n"; 
     }
 
     public boolean removeProductToOrder(int index){
         if(counter == 0){
-            System.out.println("YOUR CART IS EMPTY :<");
+            System.out.println("        YOUR CART IS EMPTY :<");
             return false;
         }
 
