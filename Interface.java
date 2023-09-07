@@ -93,7 +93,8 @@ public class Interface {
         boolean x = false;
         do{
             System.out.println("\n-----CUSTOMER MENU-----");
-            System.out.println("What would you like to do today " + customer.getName() + "?");
+            System.out.println("BALANCE: " + customer.getMoney());
+            System.out.println("\nWhat would you like to do today " + customer.getName() + "?");
             System.out.println("[S] SHOP");
             System.out.println("[H] Order History");
             System.out.println("[W] Log Out");
@@ -145,6 +146,7 @@ public class Interface {
                 isViewing = false;
                 do{ // loop for choosing product menu
                     System.out.println("\n      -----Products you can buy-----");
+                    System.out.println("BALANCE: " + customer.getMoney());
                     admin.lookAtInventoryForCustomer(); //hahaha
                     validInput = true;
                     System.out.println("\n    Choose product to buy");
@@ -158,15 +160,14 @@ public class Interface {
                         case '0':
                             boolean x = checkOutMenu();
                             if(x == true){
-                                customer.checkOut();
-                                doneChoosing = true;
-                                doneShopping = true;
-                                break;
+                                if(customer.checkOut() == true){
+                                    doneChoosing = true;
+                                    doneShopping = true;
+                                    break;
+                                }
                             }
-                            else{ 
-                                validInput = false;
-                                break;
-                            }
+                            validInput = false;
+                            break;
                         case 'X':
                             customer.resetReceipt();
                             doneShopping = true;
@@ -441,6 +442,11 @@ public class Interface {
                 return false;
             }
 
+            boolean pay = payment();
+            if(pay == false){
+                return false;
+            }
+            
             System.out.print("\n        Confirm Check Out (y/n): ");
             op = scan.next().toUpperCase().charAt(0);
             if(op == 'Y'){
@@ -456,5 +462,29 @@ public class Interface {
         }
         while(isValid == false);
         return true;
+    }
+
+    public boolean payment(){
+        boolean validInput;
+        String x;
+        double p = 0;
+        do{
+            validInput = true;
+            System.out.println("\n        [X] cancel");
+            System.out.print("        Enter amount: ");
+            x = scan.next().toUpperCase();
+            if(x.equals("X")){
+                return false;
+            }
+            else{
+                try {
+                    p = Double.parseDouble(x);
+                } catch (NumberFormatException nfe) {
+                    validInput = false;
+                }
+            }
+        }
+        while(validInput == false);
+        return customer.pay(p);
     }
 }

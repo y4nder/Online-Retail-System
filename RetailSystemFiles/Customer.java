@@ -7,6 +7,7 @@ public class Customer extends User{
    private String orderHistory;
    private boolean hasPurchased;
    private boolean hasOrdered;
+   private double money;
    
    public Customer(int usId, String usName, String em, int cusId, String addr ){
       super(usId, usName, em);
@@ -16,6 +17,7 @@ public class Customer extends User{
       orderHistory = "";
       hasPurchased = false;
       hasOrdered = false;
+      money = 500;
    }
 
    public Customer(){
@@ -25,6 +27,7 @@ public class Customer extends User{
       orderHistory = "";
       hasPurchased = false;
       hasOrdered = false;
+      money = 500;
    }
    
    //setters
@@ -52,6 +55,10 @@ public class Customer extends User{
       hasOrdered = false;
    }
 
+   public void updateMoney(double mon){
+      money = mon;
+   }
+
    //getters
    public void getOrderCount(){
       System.out.println(order.getCountOrder());
@@ -59,6 +66,10 @@ public class Customer extends User{
 
    public boolean getCartStatus(){
       return hasOrdered;
+   }
+
+   public double getMoney(){
+      return money;
    }
    
    //methods
@@ -86,19 +97,42 @@ public class Customer extends User{
       System.out.println("\n        ------YOUR CART-----");
       System.out.println(order.getReceipt());
       System.out.println("       TOTAL: $" + order.getTotal());
+      System.out.println("       Your Balance: " + getMoney());
       return true;
    }
 
-   public void checkOut(){
+   public boolean checkOut(){
+      if(getMoney() < order.getTotal()){
+         System.out.println("    Insuffiecient Funds lol");
+         return false;
+      }
       hasPurchased = true;
       System.out.println("\n-----Order Confirmation---");
       order.confirmOrder();
       addToHistory(order.getReceipt());
+      updateMoney(getMoney() - order.getTotal());
+      return true;
    }
 
    public void addToHistory(String r){
       hasPurchased = true;
       orderHistory += r;
+   }
+
+   public boolean pay(double p){
+      if(p > getMoney()){
+         System.out.println("    You only have " + getMoney());
+         return false;
+      }
+      
+      if(p < order.getTotal()){
+         System.out.println("    Insuffiecient funds");
+         return false;
+      }
+      else{
+         return true;
+      }
+
    }
 
    public String toString(){

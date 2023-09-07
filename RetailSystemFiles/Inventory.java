@@ -109,10 +109,10 @@ public class Inventory {
     }
     
     public Product createNewProduct(){
-         if(counter >= MAX ){
-            System.out.println("Max inventory reached");
-            return null;
-         }
-         return new Product();
+        if(counter >= MAX ){
+        System.out.println("Max inventory reached");
+        return null;
+        }
+        return new Product();
     }
 }
