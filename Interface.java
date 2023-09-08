@@ -178,8 +178,6 @@ public class Interface {
                             }
                             customer.resetReceipt();
                             customer.resetCart();
-                            
-                            
                             doneShopping = true;
                             return doneShopping;
                         case 'C':
