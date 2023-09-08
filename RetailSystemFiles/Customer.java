@@ -7,6 +7,7 @@ public class Customer extends User{
    private String orderHistory;
    private boolean hasPurchased;
    private boolean hasOrdered;
+   private boolean hasPurchaseHistory;
    private double money;
    
    public Customer(int usId, String usName, String em, int cusId, String addr ){
@@ -17,6 +18,7 @@ public class Customer extends User{
       orderHistory = "";
       hasPurchased = false;
       hasOrdered = false;
+      hasPurchaseHistory = false;;
       money = 500;
    }
 
@@ -27,6 +29,7 @@ public class Customer extends User{
       orderHistory = "";
       hasPurchased = false;
       hasOrdered = false;
+      hasPurchaseHistory = false;;
       money = 500;
    }
    
@@ -67,6 +70,10 @@ public class Customer extends User{
       hasPurchased = false;
    }
 
+   public void resetHasPurchaseHistory(){
+      hasPurchaseHistory = false;
+   }
+
    //getters
    public void getOrderCount(){
       System.out.println(order.getCountOrder());
@@ -82,6 +89,10 @@ public class Customer extends User{
 
    public boolean HasPurchased(){
       return hasPurchased;
+   }
+
+   public boolean HasPurchaseHistory(){
+      return hasPurchaseHistory;
    }
    
    //methods
@@ -128,6 +139,7 @@ public class Customer extends User{
 
    public void addToHistory(String r){
       hasPurchased = true;
+      hasPurchaseHistory = true;
       orderHistory += r;
    }
 

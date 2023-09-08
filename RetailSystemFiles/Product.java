@@ -44,6 +44,10 @@ public class Product {
       quantity += soldCount;
    }
 
+   public void sellProduct(){
+      soldCount = 0;
+   }
+
    //getters
    public int getProductId(){
       return productId;

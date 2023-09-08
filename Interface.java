@@ -136,7 +136,6 @@ public class Interface {
             customer.resetReceipt();
             customer.resetCart();
             customer.resetOrders();
-            customer.resetHasPurchased();
             doneShopping = false;
             doneChoosing = false;
             opt = 'N';
@@ -145,6 +144,8 @@ public class Interface {
             char o;
             //choosing products
             do{
+                customer.resetHasPurchaseHistory();
+                customer.resetHasPurchased();
                 isViewing = false;
                 do{ // loop for choosing product menu
                     System.out.println("\n      -----Products you can buy-----");
@@ -165,19 +166,20 @@ public class Interface {
                                 if(customer.checkOut() == true){
                                     doneChoosing = true;
                                     doneShopping = true;
+                                    admin.sellTheProduct();
                                     break;
                                 }
                             }
                             validInput = false;
                             break;
                         case 'X':
+                            if(customer.HasPurchased() == false && customer.HasPurchaseHistory() == false && customer.getCartStatus() == true){
+                                admin.soldReset();
+                            }
                             customer.resetReceipt();
                             customer.resetCart();
                             
-                            if(customer.HasPurchased() == false){
-                                admin.soldReset();
-                            }
-
+                            
                             doneShopping = true;
                             return doneShopping;
                         case 'C':

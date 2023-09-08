@@ -77,6 +77,12 @@ public class Inventory {
         }
     }
 
+    public void sellProd(){
+        for(int i = 0; i < counter; i++){
+            list[i].sellProduct();
+        }
+    }
+
     public void showInventoryForAdmin(){
         System.out.printf("   %15s %15s %15s %15s\n", "----------", "----------", "----------", "----------");
         System.out.printf("   %15s %15s %15s %15s\n", "ID", "NAME", "PRICE", "QUANTITY");
