@@ -92,6 +92,10 @@ public class Admin extends User{
    public Product createProduct(){
       return inventory.createNewProduct();
    }
+
+   public void soldReset(){
+      inventory.resetProducts();
+   }
    
    public String toString(){
       return "admin id: " + adminId + 

@@ -134,7 +134,9 @@ public class Interface {
         do{
             customer.resetTotal();
             customer.resetReceipt();
+            customer.resetCart();
             customer.resetOrders();
+            customer.resetHasPurchased();
             doneShopping = false;
             doneChoosing = false;
             opt = 'N';
@@ -170,6 +172,12 @@ public class Interface {
                             break;
                         case 'X':
                             customer.resetReceipt();
+                            customer.resetCart();
+                            
+                            if(customer.HasPurchased() == false){
+                                admin.soldReset();
+                            }
+
                             doneShopping = true;
                             return doneShopping;
                         case 'C':

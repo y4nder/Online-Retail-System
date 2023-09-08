@@ -71,6 +71,12 @@ public class Inventory {
         return true;
     }
 
+    public void resetProducts(){
+        for(int i = 0; i < counter; i++){
+            list[i].resetSold();
+        }
+    }
+
     public void showInventoryForAdmin(){
         System.out.printf("   %15s %15s %15s %15s\n", "----------", "----------", "----------", "----------");
         System.out.printf("   %15s %15s %15s %15s\n", "ID", "NAME", "PRICE", "QUANTITY");
@@ -92,8 +98,6 @@ public class Inventory {
             list[i].showInfoForCustomer();
         }
     }
-
-    
 
     public boolean refillInventory(int index){
         if(list[index - 1].getQuantity() >= maxQuantity){

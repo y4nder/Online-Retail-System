@@ -4,12 +4,14 @@ public class Product {
    private String name;
    private double price;
    private int quantity;
+   private int soldCount;
    
    public Product(int prodId, String n, double p, int q ){
       productId = prodId;
       name = n;
       price = p;
       quantity = q;
+      soldCount = 0;
    }
    
       
@@ -18,6 +20,7 @@ public class Product {
       name = "";
       price = 0;
       quantity =0;
+      soldCount = 0;
    }
 
    //setters
@@ -31,6 +34,14 @@ public class Product {
 
    public void setProductPrice(double _price){
       price = _price;
+   }
+
+   public void sell(int qty){
+      soldCount += qty;
+   }
+
+   public void resetSold(){
+      quantity += soldCount;
    }
 
    //getters
@@ -48,6 +59,10 @@ public class Product {
 
    public int getQuantity(){
       return quantity;
+   }
+
+   public int getSold(){
+      return soldCount;
    }
 
    //methods

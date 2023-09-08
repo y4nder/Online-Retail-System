@@ -51,12 +51,20 @@ public class Customer extends User{
       order.clearR();
    }
 
+   public void resetCart(){
+      order.clearCart();
+   }
+
    public void resetOrders(){
       hasOrdered = false;
    }
 
    public void updateMoney(double mon){
       money = mon;
+   }
+
+   public void resetHasPurchased(){
+      hasPurchased = false;
    }
 
    //getters
@@ -70,6 +78,10 @@ public class Customer extends User{
 
    public double getMoney(){
       return money;
+   }
+
+   public boolean HasPurchased(){
+      return hasPurchased;
    }
    
    //methods
@@ -94,10 +106,11 @@ public class Customer extends User{
          System.out.println("\nYOUR CART IS EMPTY :<\n");
          return false;
       }
-      System.out.println("\n        ------YOUR CART-----");
-      System.out.println(order.getReceipt());
-      System.out.println("       TOTAL: $" + order.getTotal());
-      System.out.println("       Your Balance: " + getMoney());
+      System.out.println("\n              ------YOUR CART-----");
+      // System.out.println(order.getReceipt());
+      order.displayOrders();
+      System.out.println("\n       TOTAL: $" + order.getTotal());
+      System.out.println("       Your Balance: " + getMoney() + "\n");
       return true;
    }
 
@@ -106,7 +119,6 @@ public class Customer extends User{
          System.out.println("    Insuffiecient Funds lol");
          return false;
       }
-      hasPurchased = true;
       System.out.println("\n-----Order Confirmation---");
       order.confirmOrder();
       addToHistory(order.getReceipt());
