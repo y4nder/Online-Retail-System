@@ -119,13 +119,14 @@ public class Order {
         receipt += "         $" + p.getPrice() + "      " + p.getName() + "      x" + qty + "\n"; 
     }
 
+    //manage cart methods
     public boolean removeProductToOrder(int index){
         if(counter == 0){
             System.out.println("        YOUR CART IS EMPTY :<");
             return false;
         }
 
-        System.out.println(productList[index-1].getName() + " has been removed");
+        System.out.println(productList[index-1].getName() + " has been removed from your cart");
         for(int i = index - 1; i < counter - 1; i++){
             productList[i] = productList[i + 1];
         }

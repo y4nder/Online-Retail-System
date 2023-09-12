@@ -75,8 +75,8 @@ public class Customer extends User{
    }
 
    //getters
-   public void getOrderCount(){
-      System.out.println(order.getCountOrder());
+   public int getOrderCount(){
+      return order.getCountOrder();
    }
 
    public boolean getCartStatus(){
@@ -157,6 +157,10 @@ public class Customer extends User{
          return true;
       }
 
+   }
+
+   public void removeOrder(int index){
+      order.removeProductToOrder(index);
    }
 
    public String toString(){

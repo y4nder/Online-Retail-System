@@ -59,11 +59,11 @@ public class Main {
             }
         }
         while(isUser == false);
+        
         return option;
     }
 
     static void AdminLogIn(){
-
         System.out.print("AdminID: ");
         admin.setAdminId(scan.nextInt());
 
@@ -89,12 +89,14 @@ public class Main {
 
         System.out.print("EMAIL: ");
         customer.setEmail(scan.next());
+        
     }
 
     static char customerMenu(){
         char op;
         boolean x = false;
         do{
+            
             System.out.println("\n-----CUSTOMER MENU-----");
             System.out.println("BALANCE: " + customer.getMoney());
             System.out.println("\nWhat would you like to do today " + customer.getName() + "?");
@@ -207,7 +209,7 @@ public class Main {
                 Product p;
 
                 if(isViewing == true){  //if customer wants to view cart
-                    customer.viewCart();
+                    manageCartMenu();
                 }
                 else{   
                     p = admin.getProduct(op);
@@ -497,6 +499,88 @@ public class Main {
         }
         while(validInput == false);
         return customer.pay(p);
+    }
+
+
+
+    static void manageCartDialogue(){
+        customer.viewCart();
+        System.out.println("[1] Remove");
+        System.out.println("[2] Edit quantity");
+        System.out.println("[X] EXIT <--");
+        System.out.print("      option > (number): ");
+    }
+
+    static int manageCartMenu(){
+        char o;
+        int op;
+        boolean doneChoosing;
+        do{
+            doneChoosing = false;
+            // removeProductDialog();
+            manageCartDialogue();
+            op = -1;
+            o = scan.next().toUpperCase().charAt(0);
+            switch(o){
+                case 'X':
+                    doneChoosing = true;
+                    op = -2;
+                    break;
+                default:
+                    try{ //check if user option can be an integer
+                        op = Integer.parseInt(String.valueOf(o));
+                    } catch (NumberFormatException nfe){
+                        doneChoosing = false;
+                        System.out.println("    invalid input");
+                        break;
+                    }
+                    
+                    //check if user option is within inventory range
+                    if(op < 1 || op > customer.getOrderCount() ){
+                        doneChoosing = false;
+                        System.out.println("    Invalid Input");
+                    }
+                    else doneChoosing = true;
+            }
+        }
+        while(doneChoosing == false);
+        
+        return op;
+    }
+
+    static void editOrder(int x){
+        int op = manageCartMenu();
+        if(op == -1) 
+            System.out.println("error input");
+            
+            boolean isValid;
+        do{
+            System.out.println("[1] Remove");
+            System.out.println("[2] edit count");
+            System.out.println("[3] cancel");
+            char option = scan.next().toUpperCase().charAt(0);
+            isValid = true;
+            switch(option){
+                case '1':
+                    remove(op);
+                case '2':
+                    // editQty(x);
+                    return;
+                case '3':
+                    return;
+                default:
+                    isValid = false;
+            }
+        }
+        while(isValid == false);
+    }
+
+    static void remove(int index){
+        customer.removeOrder(index);
+    }
+
+    static void editQty(int index){
+        
     }
 }
 
