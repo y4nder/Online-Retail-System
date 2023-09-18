@@ -5,20 +5,23 @@ public class Admin extends User{
    private Inventory inventory;
    
    public Admin(int usId, String usName, String em, int adId, String dep){
-      super(usId, usName, em);
+      userId = usId;
+      userName = usName;
+      email = em;
       adminId = adId;
       department = dep;
       inventory = new Inventory();
    }
    
    public Admin(){
-      super();
+      userId = 0;
+      userName = "";
+      email = "";
       adminId = 00;
       department = "";
       inventory = new Inventory();
    }
 
-   //setters
    public void setAdminId(int _adminId){
       adminId = _adminId;
    }
@@ -74,9 +77,17 @@ public class Admin extends User{
       inventory.deductInventoryStock(index, qty);
       return true;
    }
+
+   //implementation of abstract methods from class "User"
+   public void LogIn(){
+      System.out.println("Admin " + adminId + " has logged in");
+   }
+
+   public void LogOut(){
+      System.out.println("Admin " + adminId + " has logged out");
+   }
  
    //additional methods
-
    public void lookAtInventoryForAdmin(){
       inventory.showInventoryForAdmin();
    }

@@ -1,23 +1,10 @@
 package RetailSystemFiles;
-public class User{
+public abstract class User{
    protected int userId;
    protected String userName;
    protected String email;
-   
-   //constructors
-   public User(int usId, String usName, String em){
-      this.userId = usId;
-      this.userName = usName;
-      this.email = em;
-   }
-   
-   public User(){
-      this.userId = 0;
-      this.userName = "";
-      this.email = "";
-   }
-   
-   //setters
+      
+   // setters
    public void setUserId(int id){
       userId = id;
    }
@@ -43,16 +30,8 @@ public class User{
       return email;
    }
 
-   //methods
-   public void LogIn(){
-      System.out.println("\n" + getName() + " is logged in");
-   }
+   // abstract methods
+   public abstract void LogIn();
    
-   public void LogOut(){
-      System.out.println("\n" + getName() + " is logged out");
-   }
-
-   public String toString(){
-      return "user ID: " + userId + "\nusername: " + userName + " \nemail: " + email;
-   }
+   public abstract void LogOut(); 
 }

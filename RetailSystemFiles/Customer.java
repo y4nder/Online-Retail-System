@@ -11,10 +11,13 @@ public class Customer extends User{
    private double money;
    
    public Customer(int usId, String usName, String em, int cusId, String addr ){
-      super(usId, usName, em);
+      // super(usId, usName, em);
+      userId = usId;
+      userName = usName;
+      email = em;
       customerId = usId;
       address = addr;
-      order = new Order();
+      order = new Order(); // instatiation of order class
       orderHistory = "";
       hasPurchased = false;
       hasOrdered = false;
@@ -23,6 +26,9 @@ public class Customer extends User{
    }
 
    public Customer(){
+      userId = 0;
+      userName = "";
+      email = "";
       customerId = 0;
       address = "";
       order = new Order();
@@ -75,6 +81,10 @@ public class Customer extends User{
    }
 
    //getters
+   public int getCustomerId(){
+      return customerId;
+   }
+
    public void getOrderCount(){
       System.out.println(order.getCountOrder());
    }
@@ -118,7 +128,6 @@ public class Customer extends User{
          return false;
       }
       System.out.println("\n              ------YOUR CART-----");
-      // System.out.println(order.getReceipt());
       order.displayOrders();
       System.out.println("\n       TOTAL: $" + order.getTotal());
       System.out.println("       Your Balance: " + getMoney() + "\n");
@@ -131,12 +140,22 @@ public class Customer extends User{
          return false;
       }
       System.out.println("\n-----Order Confirmation---");
-      order.confirmOrder();
+      order.confirmOrder(customerId);
       addToHistory(order.getReceipt());
       updateMoney(getMoney() - order.getTotal());
       return true;
    }
 
+   //implementation of abstract methods from class "User"
+   public void LogIn(){
+      System.out.println("Customer " + customerId + " has logged in");
+   }
+
+   public void LogOut(){
+      System.out.println("Customer " + customerId + " has logged out");
+   }
+
+   //additional methods
    public void addToHistory(String r){
       hasPurchased = true;
       hasPurchaseHistory = true;

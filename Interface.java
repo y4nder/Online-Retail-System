@@ -40,12 +40,12 @@ public class Interface {
                 case '1' :
                     System.out.println("\n-----Customer logging in..-----\n");
                     System.out.println("Sign in");
-                    // CustomerLogIn();
+                    CustomerLogIn();
                     customer.LogIn();
                     return option;
                 case '2' :
                     System.out.println("\n-----Admin logging in..-----\n");
-                    // AdminLogIn();
+                    AdminLogIn();
                     admin.LogIn();
                     return option;
                 case 'X' :
@@ -494,5 +494,6 @@ public class Interface {
         }
         while(validInput == false);
         return customer.pay(p);
+        //code by yander
     }
 }
