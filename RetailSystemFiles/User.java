@@ -1,4 +1,4 @@
-package RetailSystemFiles;
+ package RetailSystemFiles;
 public abstract class User{
    protected int userId;
    protected String userName;
@@ -18,8 +18,8 @@ public abstract class User{
    }
 
    //getters
-   public String getName(){
-      return userName;
+   public int getId(){
+      return userId;
    }
 
    public String getUserName(){

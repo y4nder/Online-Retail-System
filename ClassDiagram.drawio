@@ -1,0 +1,139 @@
+<mxfile host="65bd71144e">
+    <diagram id="-u7qOAwQq_7p0j6S5Iw7" name="Page-1">
+        <mxGraphModel dx="1442" dy="1594" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200000" pageHeight="1600000" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Abstract Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;User&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;#&amp;nbsp; userId : int&lt;br style=&quot;font-size: 10px;&quot;&gt;#&amp;nbsp; userName : String&lt;br style=&quot;font-size: 10px;&quot;&gt;#&amp;nbsp; email : String&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;+&amp;nbsp; setUserId(int)&lt;br style=&quot;font-size: 10px;&quot;&gt;+&amp;nbsp; setUserName(String)&lt;br style=&quot;font-size: 10px;&quot;&gt;+ setEmail(String)&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;+ getId() : int&lt;br style=&quot;font-size: 10px;&quot;&gt;+ getUserName()&amp;nbsp; : String&lt;br style=&quot;font-size: 10px;&quot;&gt;+ getEmail() : String&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#66FF66;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="3350" y="410" width="180" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" style="edgeStyle=none;curved=1;html=1;shadow=0;strokeColor=#FFFFFF;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;endFill=1;endSize=5;targetPerimeterSpacing=-3;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1.001;exitY=0.337;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="4" target="54">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="3920" y="520" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="62" value="Composition" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;rotation=25;" vertex="1" connectable="0" parent="57">
+                    <mxGeometry x="0.5792" y="-1" relative="1" as="geometry">
+                        <mxPoint x="23" y="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Admin &lt;/font&gt;&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 10px;&quot;&gt;extends &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;User&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;#&amp;nbsp; adminId: int&lt;br style=&quot;font-size: 10px;&quot;&gt;#&amp;nbsp; department: String&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; Inventory : Inventory[]&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;+&amp;nbsp; setAdminId(int)&lt;br&gt;+&amp;nbsp; setDepartment(String)&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;+&amp;nbsp; enter functions&lt;br&gt;&lt;br&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;+ getId() : int&lt;br style=&quot;font-size: 10px;&quot;&gt;+ getUserName()&amp;nbsp; : String&lt;br style=&quot;font-size: 10px;&quot;&gt;+ getEmail() : String&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#FF8FF4;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="3500" y="700" width="190" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" style="edgeStyle=none;curved=1;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;shadow=0;strokeColor=#FFFFFF;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;endFill=1;endSize=5;targetPerimeterSpacing=-3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="5" target="54">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="3390" y="850" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="63" value="Composition" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;rotation=35;" vertex="1" connectable="0" parent="56">
+                    <mxGeometry x="0.5987" y="3" relative="1" as="geometry">
+                        <mxPoint x="33" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Customer &lt;/font&gt;&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 10px;&quot;&gt;extends &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;User&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; customerId: int&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; address: String&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; &lt;/font&gt;&lt;font color=&quot;#ff3399&quot;&gt;order : Order&lt;br&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(153, 255, 204);&quot;&gt;-&amp;nbsp; orderHistory: String&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(153, 255, 204);&quot;&gt;-&amp;nbsp; hasPurchased: boolean&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(153, 255, 204);&quot;&gt;-&amp;nbsp; hasOrdered: boolean&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(153, 255, 204);&quot;&gt;-&amp;nbsp; hasPurchaseHistory: String&lt;/span&gt;&lt;span style=&quot;color: rgb(153, 255, 204);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;font color=&quot;#ff3399&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; setAdminId(int)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; setDepartment(String)&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; enter functions&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+ getId() : int&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+ getUserName()&amp;nbsp; : String&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+ getEmail() : String&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#FF8FF4;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;labelBorderColor=none;perimeterSpacing=1;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="3170" y="690" width="210" height="510" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Lucida Console;fontSize=10;fontColor=#CCFFFF;entryX=0.275;entryY=0.995;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.476;exitY=0.005;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=3;" edge="1" parent="1" source="5">
+                    <mxGeometry width="100" relative="1" as="geometry">
+                        <mxPoint x="3275" y="710" as="sourcePoint"/>
+                        <mxPoint x="3429.5" y="599.05" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="3270" y="660"/>
+                            <mxPoint x="3430" y="660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="&lt;font color=&quot;#ccffff&quot;&gt;Inheritance&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FFFFFF;" vertex="1" connectable="0" parent="6">
+                    <mxGeometry x="0.161" y="-2" relative="1" as="geometry">
+                        <mxPoint x="-25" y="-12" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Lucida Console;fontSize=10;fontColor=#C8CF0A;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=3;" edge="1" parent="1" source="4">
+                    <mxGeometry width="100" relative="1" as="geometry">
+                        <mxPoint x="3490" y="730" as="sourcePoint"/>
+                        <mxPoint x="3440" y="600" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="3595" y="660"/>
+                            <mxPoint x="3440" y="660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="&lt;font color=&quot;#ccffff&quot;&gt;Inheritance&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#C8CF0A;" vertex="1" connectable="0" parent="7">
+                    <mxGeometry x="-0.0897" y="-1" relative="1" as="geometry">
+                        <mxPoint x="1" y="-9" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;shadow=0;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;targetPerimeterSpacing=-3;curved=1;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="13" target="14">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="&lt;font color=&quot;#6600cc&quot;&gt;Aggregation&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;" vertex="1" connectable="0" parent="42">
+                    <mxGeometry x="-0.1129" relative="1" as="geometry">
+                        <mxPoint x="-10" y="-15" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Product&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; productId: int&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; name: String&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; price: double&lt;br&gt;-&amp;nbsp; quantity: int&lt;br&gt;-&amp;nbsp; soldCount: int&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;+&amp;nbsp; setProductId(int)&lt;br&gt;+&amp;nbsp; setProductName(String)&lt;br&gt;+&amp;nbsp; setProductPrice(double)&lt;br&gt;+&amp;nbsp; sell(int)&lt;br&gt;+&amp;nbsp; resetSold()&lt;br&gt;+&amp;nbsp; sellProduct()&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;+&amp;nbsp; enter functions for later&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#FF8FF4;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="3330" y="1350" width="210" height="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" style="edgeStyle=none;html=1;entryX=0.001;entryY=0.296;entryDx=0;entryDy=0;shadow=0;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;endFill=1;targetPerimeterSpacing=-3;exitX=0.48;exitY=-0.002;exitDx=0;exitDy=0;exitPerimeter=0;rounded=1;entryPerimeter=0;anchorPointDirection=1;snapToPoint=1;bendable=1;ignoreEdge=0;endSize=5;" edge="1" parent="1" source="14" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="3050" y="840"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="46" value="Composition" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;" vertex="1" connectable="0" parent="45">
+                    <mxGeometry x="-0.2252" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-1" y="2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Order&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; orderId: int&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; MAX: int&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; &lt;/font&gt;&lt;font color=&quot;#ff3399&quot;&gt;Product: Product[]&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; counter: int&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; totalAmount: double&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; receipt: String&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; orderDate: String&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; enter functions for later&lt;/font&gt;&lt;br&gt;&lt;br&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#FF8FF4;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2950" y="1350" width="210" height="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Inventory&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; MAX: int&lt;br style=&quot;font-size: 10px;&quot;&gt;-&amp;nbsp; &lt;/font&gt;&lt;font color=&quot;#ff3399&quot;&gt;list: Product[]&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; counter: int&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;-&amp;nbsp; maxQuantity: int&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; setAdminId(int)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; setDepartment(String)&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+&amp;nbsp; enter functions&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+ getId() : int&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+ getUserName()&amp;nbsp; : String&lt;/font&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;font color=&quot;#99ffcc&quot;&gt;+ getEmail() : String&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#FF8FF4;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="3740" y="1350" width="190" height="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" style="edgeStyle=none;html=1;shadow=0;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;endFill=1;targetPerimeterSpacing=-3;exitX=0.5;exitY=0;exitDx=0;exitDy=0;rounded=1;anchorPointDirection=1;snapToPoint=1;bendable=1;ignoreEdge=0;endSize=5;entryX=1.063;entryY=0.296;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="47" target="4">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="3852.01" y="1040" as="sourcePoint"/>
+                        <mxPoint x="3730" y="840" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="3835" y="840"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="Composition" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;" vertex="1" connectable="0" parent="50">
+                    <mxGeometry x="-0.2252" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-1" y="2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="52" style="edgeStyle=none;html=1;shadow=0;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;targetPerimeterSpacing=-3;curved=1;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="13" target="47">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="3540" y="1190" as="sourcePoint"/>
+                        <mxPoint x="3630" y="1195" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="53" value="&lt;font color=&quot;#6600cc&quot;&gt;Aggregation&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;" vertex="1" connectable="0" parent="52">
+                    <mxGeometry x="-0.1129" relative="1" as="geometry">
+                        <mxPoint x="-10" y="-15" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="59" style="edgeStyle=none;curved=1;html=1;entryX=1;entryY=0.474;entryDx=0;entryDy=0;shadow=0;strokeColor=#FFFFFF;strokeWidth=3;fontFamily=Lucida Console;fontSize=10;fontColor=#FF3399;endArrow=diamond;endFill=1;endSize=5;targetPerimeterSpacing=-3;entryPerimeter=0;" edge="1" parent="1" target="58">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2880" y="500" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="64" value="Composition" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Lucida Console;fontColor=#FF3399;" vertex="1" connectable="0" parent="59">
+                    <mxGeometry x="-0.2844" y="2" relative="1" as="geometry">
+                        <mxPoint x="-23" y="-22" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="54" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Interface&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;&amp;nbsp; customer: Customer&lt;br style=&quot;font-size: 10px;&quot;&gt;&amp;nbsp; admin: Admin&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;+ begin&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#66FF66;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2880" y="400" width="160" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 10px;&quot;&gt;&lt;font color=&quot;#ff3333&quot; style=&quot;font-size: 10px;&quot;&gt;Class &lt;/font&gt;&lt;font color=&quot;#c8cf0a&quot; style=&quot;font-size: 10px;&quot;&gt;Main&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center; font-size: 10px;&quot;&gt;&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/div&gt;&lt;font color=&quot;#99ffcc&quot;&gt;&amp;nbsp; menu: Interface&lt;br&gt;&lt;/font&gt;" style="html=1;align=left;horizontal=1;verticalAlign=top;spacingLeft=10;strokeColor=#66FF66;strokeWidth=1;fillColor=#18141d;fontColor=#333333;fillStyle=auto;gradientColor=none;gradientDirection=south;fontFamily=Lucida Console;fontSize=10;fontStyle=0;whiteSpace=wrap;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="2580" y="410" width="160" height="190" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

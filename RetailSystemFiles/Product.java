@@ -13,7 +13,7 @@ public class Product {
       quantity = q;
       soldCount = 0;
    }
-   
+    
       
    public Product(){
       productId = 00;
