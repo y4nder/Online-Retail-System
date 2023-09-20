@@ -6,7 +6,6 @@ public class Order {
     private DateFormat date;
     private Date obj = new Date();
     private int orderId;
-    private int customerId;
     private int MAX;
     private Product[] productList;
     private int counter;
@@ -18,7 +17,6 @@ public class Order {
         date = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         obj = new Date();
         orderId = 0;
-        customerId = 0;
         MAX = 20;
         productList = new Product[MAX];
         totalAmount = 0;
@@ -133,11 +131,10 @@ public class Order {
         return true;
     }
 
-    public void confirmOrder(){
+    public void confirmOrder(int id){
         orderId++;
-        customerId++;
         System.out.println(receipt);
-        System.out.println("Customer ID: " + customerId);
+        System.out.println("Customer ID: " + id);
         System.out.println("Order ID: " + orderId);
         System.out.println("Purchase succesfull!");
         System.out.println("You paid $" + totalAmount);
@@ -146,8 +143,6 @@ public class Order {
 
     public void displayOrders(){
         for(int i = 0; i < counter; i++){
-            // System.out.println(productList[i].getProductId() + "   " 
-            //     + productList[i].getName() + " $" + productList[i].getPrice() + "   " + productList[i].getQuantity());
             System.out.printf("%15s %15s %15s\n",productList[i].getName(), "$" + productList[i].getPrice(), "   x" + productList[i].getQuantity());
         }
     }

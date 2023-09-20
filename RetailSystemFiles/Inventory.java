@@ -9,7 +9,7 @@ public class Inventory {
         MAX = 20;
         list = new Product[MAX];
         list[0] = new Product(1, "watermelon", 19.99, 4);
-        list[1] = new Product(34, "banana", 5.99, 6);
+        list[1] = new Product(34, "banana",  5.99, 6);
         list[2] = new Product(65, "apple", 4.50, 8);
         list[3] = new Product(21, "mango", 60, 10);
         list[4] = new Product(21, "orange", 60, 10);
