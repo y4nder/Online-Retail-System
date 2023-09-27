@@ -3,16 +3,7 @@ public class Admin extends User{
    protected int adminId;
    protected String department;
    private Inventory inventory;
-   
-   public Admin(int usId, String usName, String em, int adId, String dep){
-      userId = usId;
-      userName = usName;
-      email = em;
-      adminId = adId;
-      department = dep;
-      inventory = new Inventory();
-   }
-   
+      
    public Admin(){
       userId = 0;
       userName = "";
@@ -22,39 +13,15 @@ public class Admin extends User{
       inventory = new Inventory();
    }
 
-   public void setAdminId(int _adminId){
-      adminId = _adminId;
+   public void setAdminId(int adminId){
+      this.adminId = adminId;
    }
 
-   public void setDepartment(String _department){ 
-      department = _department; 
+   public void setDepartment(String department){ 
+      this.department = department; 
    }
 
-   //setters for inventory
-   public void editProductId(int id, int index){
-      inventory.editId(id, index);
-   }
-
-   public void editProductName(String name, int index){
-      inventory.editName(name, index);
-   }
-
-   public void editProductPrice(double price, int index){
-      inventory.editPrice(price, index);
-   }
-
-   public void editProductQuantity(int qty, int index){
-      inventory.editQuantity(qty, index);
-   }
-
-   
-
-   //getter
-   public int getInventoryCount(){
-      return inventory.getCounter();
-   }
-
-   //methods
+   //methods for managing inventory
    public boolean addProduct(Product p){
       inventory.add(p);
       return true;
@@ -78,15 +45,35 @@ public class Admin extends User{
       return true;
    }
 
+   public void editProductId(int id, int index){
+      inventory.editId(id, index);
+   }
+
+   public void editProductName(String name, int index){
+      inventory.editName(name, index);
+   }
+
+   public void editProductPrice(double price, int index){
+      inventory.editPrice(price, index);
+   }
+
+   public void editProductQuantity(int qty, int index){
+      inventory.editQuantity(qty, index);
+   }
+
+   public int getInventoryCount(){
+      return inventory.getCounter();
+   }
+
    //implementation of abstract methods from class "User"
    public void LogIn(){
-      System.out.println("Admin " + adminId + " has logged in");
+      System.out.println("Admin " + userName + " has logged in");
    }
 
    public void LogOut(){
-      System.out.println("Admin " + adminId + " has logged out");
+      System.out.println("Admin " + userName + " has logged out");
    }
- 
+   
    //additional methods
    public void lookAtInventoryForAdmin(){
       inventory.showInventoryForAdmin();
@@ -112,10 +99,4 @@ public class Admin extends User{
       inventory.sellProd();
    }
    
-   public String toString(){
-      return "admin id: " + adminId + 
-            "\n name: " + super.userName + 
-            "\n department: " + department + 
-            "\n email: " + super.email;
-   }
 }

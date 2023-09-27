@@ -3,22 +3,22 @@ import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.util.Date;
 public class Order {
-    private DateFormat date;
-    private Date obj = new Date();
     private int orderId;
+    private Product[] orders;
     private int MAX;
-    private Product[] productList;
     private int counter;
     private double totalAmount;
     private String receipt;
     private String orderDate;
+    private DateFormat date;
+    private Date obj = new Date();
 
     public Order(){
         date = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         obj = new Date();
         orderId = 0;
-        MAX = 20;
-        productList = new Product[MAX];
+        MAX = 99;
+        orders = new Product[MAX];
         totalAmount = 0;
         orderDate = date.format(obj);
         receipt = "";
@@ -57,17 +57,13 @@ public class Order {
     }
 
     public void clearCart(){
-        productList = new Product[MAX];
+        orders = new Product[MAX];
         counter = 0;
     }
 
 
     //methods
     public void calculateTotalAmount(Product p, int qty){
-        // for(int i = 0; i < counter; i++){
-        //     totalAmount += productList[i].getPrice();
-        // }
-        // return totalAmount;
         totalAmount += p.getPrice() * qty;
     }
 
@@ -83,54 +79,54 @@ public class Order {
             return false;
         }
 
-        int index;
-        if( (index = checkDuplicate(p, quantity) ) != -1){ //algorithm to check for duplicates
+        //checking of duplicate products
+        int index = checkDuplicate(p, quantity);
+        if (index  != -1){ 
             p.sell(quantity);
-            System.out.println(p.getSold());
-            productList[index].updateStock(productList[index].getQuantity() + quantity);
-            calculateTotalAmount(productList[index], quantity);
-            addToReceipt(productList[index], quantity);
+            orders[index].updateStock(orders[index].getQuantity() + quantity);
+            calculateThenAddtoReceipt(orders[index], quantity);
         }
         else{
             counter++;
             p.sell(quantity);
-            System.out.println(p.getSold());
-            productList[counter-1] = new Product(p.getProductId(), p.getName(), p.getPrice(), quantity);
-            calculateTotalAmount(productList[counter-1], quantity);
-            addToReceipt(productList[counter-1], quantity);
+            orders[counter-1] = new Product(p.getProductId(), p.getName(), p.getPrice(), quantity);
+            calculateThenAddtoReceipt(orders[counter-1], quantity);
+
         }   
 
         return true;
     }
 
+    private void calculateThenAddtoReceipt(Product p, int quantity){
+        calculateTotalAmount(p, quantity);
+        addToReceipt(p, quantity);
+    }
+
     private int checkDuplicate(Product p, int quantity){
         for(int i = 0; i < counter; i++){
-            if(productList[i].getProductId() == p.getProductId()){
-                System.out.println("Duplicate found");
+            if(orders[i].getProductId() == p.getProductId()){
                 return i;
             }
         }
         return -1;
     }
 
-    private void addToReceipt(Product p, int qty){
-        receipt += "         $" + p.getPrice() + "      " + p.getName() + "      x" + qty + "\n"; 
-    }
-
+    
     public boolean removeProductToOrder(int index){
         if(counter == 0){
             System.out.println("        YOUR CART IS EMPTY :<");
             return false;
         }
-
-        System.out.println(productList[index-1].getName() + " has been removed");
+        
+        System.out.println(orders[index-1].getName() + " has been removed");
         for(int i = index - 1; i < counter - 1; i++){
-            productList[i] = productList[i + 1];
+            orders[i] = orders[i + 1];
         }
         counter--;
         return true;
     }
 
+    
     public void confirmOrder(int id){
         orderId++;
         System.out.println(receipt);
@@ -141,9 +137,13 @@ public class Order {
         System.out.println("Date: " + orderDate);
     }
 
+    private void addToReceipt(Product p, int qty){
+        receipt += "         $" + p.getPrice() + "      " + p.getName() + "      x" + qty + "\n"; 
+    }
+
     public void displayOrders(){
         for(int i = 0; i < counter; i++){
-            System.out.printf("%15s %15s %15s\n",productList[i].getName(), "$" + productList[i].getPrice(), "   x" + productList[i].getQuantity());
+            System.out.printf("%15s %15s %15s\n",orders[i].getName(), "$" + orders[i].getPrice(), "   x" + orders[i].getQuantity());
         }
     }
 }
