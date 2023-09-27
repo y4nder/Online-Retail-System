@@ -5,8 +5,12 @@ public class Interface {
     static Customer customer = new Customer();
     static Admin admin = new Admin();
     static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args){
+        begin(); 
+    }
     
-    public void begin(){
+    public static void begin(){
         char op, x = 'X';
         do{
             op = logIn();
@@ -25,7 +29,7 @@ public class Interface {
         while(x == 'W');
     }
 
-    public char logIn(){
+    public static char logIn(){
         char option;
         boolean isUser;
         do{
@@ -59,42 +63,44 @@ public class Interface {
         return option;
     }
 
-    public void AdminLogIn(){
+    public static void AdminLogIn(){
 
         System.out.print("AdminID: ");
         admin.setAdminId(scan.nextInt());
+        scan.nextLine();
 
         System.out.print("Name: ");
-        admin.setUserName(scan.next());
-        
+        admin.setUserName(scan.nextLine());
+
         System.out.print("EMAIL: ");
-        admin.setEmail(scan.next());
+        admin.setEmail(scan.nextLine());
         
         System.out.print("Department: ");
-        admin.setDepartment(scan.next());
+        admin.setDepartment(scan.nextLine());
     }
     
-    public void CustomerLogIn(){
+    public static void CustomerLogIn(){
         System.out.print("CustomerID: ");
         customer.setCustomerId(scan.nextInt());
+        scan.nextLine();
         
         System.out.print("Name: ");
-        customer.setUserName(scan.next());
+        customer.setUserName(scan.nextLine());
     
         System.out.print("Address: ");
-        customer.setAddress(scan.next());
+        customer.setAddress(scan.nextLine());
 
         System.out.print("EMAIL: ");
-        customer.setEmail(scan.next());
+        customer.setEmail(scan.nextLine());
     }
 
-    public char customerMenu(){
+    public static char customerMenu(){
         char op;
         boolean x = false;
         do{
             System.out.println("\n-----CUSTOMER MENU-----");
             System.out.println("BALANCE: " + customer.getMoney());
-            System.out.println("\nWhat would you like to do today " + customer.getName() + "?");
+            System.out.println("\nWhat would you like to do today " + customer.getUserName() + "?");
             System.out.println("[S] SHOP");
             System.out.println("[H] Order History");
             System.out.println("[W] Log Out");
@@ -119,23 +125,23 @@ public class Interface {
         return op;
     }
 
-    public boolean shop(){
+    static void resetRecords(){
+        customer.resetTotal();
+        customer.resetReceipt();
+        customer.resetCart();
+        customer.resetOrders();
+    }
+
+    public static boolean shop(){
         if(admin.getInventoryCount() == 0){
             System.out.println("The shop is currently closed");
             return true;
         }
-        boolean doneShopping;
-        boolean doneChoosing;
-        boolean isViewing;
-        boolean validInput;
+        boolean doneShopping, doneChoosing, isViewing, validInput;
         char opt;
-        int op;
-        int qty;
+        int op, qty;
         do{
-            customer.resetTotal();
-            customer.resetReceipt();
-            customer.resetCart();
-            customer.resetOrders();
+            resetRecords();
             doneShopping = false;
             doneChoosing = false;
             opt = 'N';
@@ -236,7 +242,7 @@ public class Interface {
         return doneShopping;
     }
     
-    public char adminMenu(){
+    public static char adminMenu(){
         boolean signedOut;
         char x;
         do{
@@ -268,7 +274,7 @@ public class Interface {
         while(signedOut == false);
         return x;
     }
-    public void addProductMenu(){
+    public static void addProductMenu(){
         Product p = admin.createProduct();
         if(p == null){
             return;
@@ -277,7 +283,7 @@ public class Interface {
         editProduct(p);
     }
 
-    public void editProductMenu(int x){
+    public static void editProductMenu(int x){
         int op = chooseProductMenu(x);
         if(op > 0){
             modifyProduct(op);
@@ -289,7 +295,7 @@ public class Interface {
         }
     }
 
-    public void modifyProduct(int index){
+    public static void modifyProduct(int index){
         boolean doneChoosing;
         String name = admin.getProduct(index).getName();
         char x = manageMenu(name);
@@ -299,10 +305,11 @@ public class Interface {
                 case '1':              
                     System.out.print("Enter New Product ID: ");
                     admin.editProductId(scan.nextInt(), index);
+                    scan.nextLine();
                     break;
                 case '2':
                     System.out.print("Enter new Product Name: ");
-                    admin.editProductName(scan.next(), index);
+                    admin.editProductName(scan.nextLine(), index);
                     break;
                 case '3':
                     System.out.print("Enter new Price: ");
@@ -321,15 +328,17 @@ public class Interface {
         while(doneChoosing == false);
     }
     
-    public void editProduct(Product p){
+    public static void editProduct(Product p){
         System.out.print("Enter Product ID: ");
         p.setProductId(scan.nextInt());
+        scan.nextLine();
         
         System.out.print("Enter Product Name: ");
-        p.setProductName(scan.next());
+        p.setProductName(scan.nextLine());
         
         System.out.print("Enter Price for " + p.getName() + ": ");
         p.updatePrice(scan.nextDouble());
+        scan.nextLine();
         
         System.out.print("Enter quantity for " + p.getName() + ": ");
         p.updateStock(scan.nextInt());
@@ -339,7 +348,7 @@ public class Interface {
         System.out.println("\n " + p.getName().toUpperCase() + " has been added to the inventory\n");
     }
 
-    public void removeProductMenu(int x){
+    public static void removeProductMenu(int x){
         int op = chooseProductMenu(x);
         if(op > 0){
             admin.removeProduct(op);
@@ -351,7 +360,7 @@ public class Interface {
         }
     }
 
-    public int chooseProductMenu(int x){
+    public static int chooseProductMenu(int x){
         char o;
         int op;
         boolean doneChoosing;
@@ -395,7 +404,7 @@ public class Interface {
         return op;
     }
 
-    public void removeProductDialog(){
+    public static void removeProductDialog(){
         System.out.println("\n-----REMOVE A PRODUCT-----\n");
         admin.lookAtInventoryForAdmin();
         System.out.println("\n    Choose product to remove");
@@ -403,7 +412,7 @@ public class Interface {
         System.out.print("      option > (number): ");
     }
 
-    public void managingInventoryDialog(){
+    public static void managingInventoryDialog(){
         System.out.println("\n-----MANAGING INVENTORY-----");
         admin.lookAtInventoryForAdmin();
         System.out.println("\n    Choose product to manage");
@@ -411,7 +420,7 @@ public class Interface {
         System.out.print("      option > (number): ");
     }
 
-    public char manageMenu(String name){
+    public static char manageMenu(String name){
         char op;
         boolean doneChoosing;
         do{
@@ -440,7 +449,7 @@ public class Interface {
         return op;
     }
 
-    public boolean checkOutMenu(){
+    public static boolean checkOutMenu(){
         char op ;
         boolean isValid;
         do{
@@ -472,7 +481,7 @@ public class Interface {
         return true;
     }
 
-    public boolean payment(){
+    public static boolean payment(){
         boolean validInput;
         String x;
         double p = 0;

@@ -5,26 +5,12 @@ public class Customer extends User{
    private String address;
    private Order order;
    private String orderHistory;
+
    private boolean hasPurchased;
    private boolean hasOrdered;
    private boolean hasPurchaseHistory;
    private double money;
    
-   public Customer(int usId, String usName, String em, int cusId, String addr ){
-      // super(usId, usName, em);
-      userId = usId;
-      userName = usName;
-      email = em;
-      customerId = usId;
-      address = addr;
-      order = new Order(); // instatiation of order class
-      orderHistory = "";
-      hasPurchased = false;
-      hasOrdered = false;
-      hasPurchaseHistory = false;;
-      money = 500;
-   }
-
    public Customer(){
       userId = 0;
       userName = "";
@@ -46,38 +32,6 @@ public class Customer extends User{
    
    public void setAddress(String add){
       address = add;   
-   }
-
-   public void resetTotal(){
-      order.resetTotal();
-   }
-
-   public void clearReceipt(){
-      order.clearR();
-   }
-
-   public void resetReceipt(){
-      order.clearR();
-   }
-
-   public void resetCart(){
-      order.clearCart();
-   }
-
-   public void resetOrders(){
-      hasOrdered = false;
-   }
-
-   public void updateMoney(double mon){
-      money = mon;
-   }
-
-   public void resetHasPurchased(){
-      hasPurchased = false;
-   }
-
-   public void resetHasPurchaseHistory(){
-      hasPurchaseHistory = false;
    }
 
    //getters
@@ -178,10 +132,37 @@ public class Customer extends User{
 
    }
 
-   public String toString(){
-      return  "customer id: " + customerId + 
-               "\nName: " + super.userName + 
-               "\naddress: " + address + 
-               "\nemail: " + super.email;
+   public void updateMoney(double mon){
+      money = mon;
+   }
+
+   //reset methods
+   public void resetTotal(){
+      order.resetTotal();
+   }
+
+   public void clearReceipt(){
+      order.clearR();
+   }
+
+   public void resetReceipt(){
+      order.clearR();
+   }
+
+   public void resetCart(){
+      order.clearCart();
+   }
+
+   public void resetOrders(){
+      hasOrdered = false;
+   }
+
+   
+   public void resetHasPurchased(){
+      hasPurchased = false;
+   }
+   
+   public void resetHasPurchaseHistory(){
+      hasPurchaseHistory = false;
    }
 }
